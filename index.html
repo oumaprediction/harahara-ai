@@ -111,6 +111,11 @@ text-align:left;white-space:nowrap}th{color:var(--muted);font-weight:500;font-si
 .fc{display:inline-block;margin-right:8px}.fc small{display:block;font-size:10px;color:var(--muted);line-height:1}
 .tkev{font-size:12px;color:var(--muted)}.warn{color:var(--red);font-weight:700}
 /* ===== 出走馬 ===== */
+.sortbar{display:flex;gap:6px;align-items:center;overflow-x:auto;scrollbar-width:none;margin:0 0 8px;padding-bottom:2px}
+.sortbar::-webkit-scrollbar{display:none}.sortbar span{font-size:11px;color:var(--muted);white-space:nowrap}
+.sortbar button{flex:0 0 auto;border:1px solid var(--line2);background:var(--panel);color:var(--ink2);border-radius:999px;
+padding:3px 11px;font:inherit;font-size:12px;font-weight:700;cursor:pointer}
+.sortbar button.on{background:var(--ink);border-color:var(--ink);color:var(--panel)}.sortbar button:disabled{opacity:.35;cursor:default}
 .horses{background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden}
 .horse{border-top:1px solid var(--line)}.horse:first-child{border-top:0}
 .horse summary{display:grid;grid-template-columns:30px 34px 1fr 92px;gap:10px;align-items:center;padding:10px 12px;
