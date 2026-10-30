@@ -1,9 +1,10 @@
 <!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport"
-content="width=device-width,initial-scale=1"><title>ハラハラ競馬</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet"><meta name="theme-color" content="#161513"><style>
+content="width=device-width,initial-scale=1"><title>ハラハラ競馬</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Barlow+Condensed:ital,wght@0,500;0,600;0,700;1,600;1,700&display=swap" rel="stylesheet"><meta name="theme-color" content="#0c0b0a"><style>
 :root{--paper:#f4f1e9;--panel:#fffdf8;--ink:#161513;--ink2:#45413b;--muted:#7a746b;--line:#e3ded2;--line2:#d3cdbf;
 --red:#d4002c;--navy:#1c4db3;--amber:#c76a00;--good:#0b8048;--bad:#c23b16;--chip:#eeeadf;--bar:#e6e1d5;
 --redbg:#fbe9ec;--navybg:#e8eefb;--amberbg:#fbf0e1;--mast:#161513;--mastink:#fffdf8;
---num:"Oswald","Bahnschrift","DIN Condensed","Arial Narrow",sans-serif;--on:#fff}
+--num:"Barlow Condensed","Oswald","Bahnschrift","DIN Condensed","Arial Narrow",sans-serif;--on:#fff;
+--disp:"Dela Gothic One","Zen Kaku Gothic New",sans-serif;--gold:#c9a24a}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#11100e;--panel:#1a1916;--ink:#f1ede4;--ink2:#cdc7bb;
 --muted:#9b9488;--line:#2c2a25;--line2:#3a3731;--red:#ff4a6a;--navy:#80a6ff;--amber:#ffad42;--good:#4fd18b;--bad:#ff7d5c;
 --chip:#25231f;--bar:#2e2c27;--redbg:#3a151d;--navybg:#17213a;--amberbg:#352514;--mast:#000;--mastink:#f1ede4;--on:#11100e}}
@@ -11,22 +12,28 @@ content="width=device-width,initial-scale=1"><title>ハラハラ競馬</title><l
 --line2:#3a3731;--red:#ff4a6a;--navy:#80a6ff;--amber:#ffad42;--good:#4fd18b;--bad:#ff7d5c;--chip:#25231f;--bar:#2e2c27;
 --redbg:#3a151d;--navybg:#17213a;--amberbg:#352514;--mast:#000;--mastink:#f1ede4;--on:#11100e}
 *{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans JP",-apple-system,BlinkMacSystemFont,"Hiragino Sans",
-"Yu Gothic UI",sans-serif;font-size:15px;line-height:1.6;font-feature-settings:"palt"}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Zen Kaku Gothic New","Noto Sans JP",-apple-system,
+BlinkMacSystemFont,"Hiragino Sans","Yu Gothic UI",sans-serif;font-size:15px;line-height:1.6;font-feature-settings:"palt"}
 b{font-weight:700}.muted{color:var(--muted);font-size:12px}
 .n{font-family:var(--num);font-weight:600;letter-spacing:.01em;font-feature-settings:"tnum"}
 /* ===== マストヘッド ===== */
 .top{position:sticky;top:0;z-index:5;background:var(--paper)}
-.mast{background:var(--mast);color:var(--mastink)}
-.mast .in{max-width:960px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:14px}
-.logo{display:flex;align-items:center;gap:6px;font-weight:900;font-size:21px;letter-spacing:.02em;line-height:1;white-space:nowrap;
-color:inherit;text-decoration:none}.logo:active{opacity:.7}
-.logo em{font-style:normal;background:var(--red);color:#fff;padding:4px 6px 5px;border-radius:3px}
-.logo small{font-family:var(--num);font-weight:500;font-size:10px;letter-spacing:.2em;opacity:.6;margin-left:6px;align-self:flex-end}
-.date{margin-left:auto;text-align:right;line-height:1.15}.date .d{font-family:var(--num);font-size:22px;font-weight:600}
-.date .d small{font-family:"Noto Sans JP",sans-serif;font-size:12px;font-weight:700;margin-left:4px}
-.date .st{display:block;font-size:11px;opacity:.7;white-space:nowrap}
-@media (max-width:480px){.date .st .wl{display:none}.logo{font-size:19px}.logo small{display:none}}
+/* 墨色の帯に、走るような斜めの細線。下に赤い線 */
+.mast{color:#fff;border-bottom:3px solid var(--red);
+background:repeating-linear-gradient(-62deg,rgba(255,255,255,.035) 0 1px,transparent 1px 7px),linear-gradient(100deg,#0c0b0a 0%,#1d1a16 60%,#2a1015 100%)}
+.mast .in{max-width:960px;margin:0 auto;padding:11px 16px 10px;display:flex;align-items:center;gap:14px}
+.logo{display:flex;align-items:center;gap:7px;font-family:var(--disp);font-weight:400;font-size:25px;letter-spacing:.01em;line-height:1;
+white-space:nowrap;color:#fff;text-decoration:none;font-style:normal}.logo:active{opacity:.75}
+.logo .hh{display:inline-block;transform:skewX(-9deg);text-shadow:2px 2px 0 rgba(212,0,44,.55)}
+.logo em{font-style:normal;display:inline-block;background:var(--red);color:#fff;padding:5px 9px 6px;transform:skewX(-12deg);
+box-shadow:3px 3px 0 rgba(0,0,0,.35)}.logo em span{display:inline-block;transform:skewX(12deg)}
+.logo small{font-family:var(--num);font-style:italic;font-weight:600;font-size:11px;letter-spacing:.28em;color:var(--gold);
+margin-left:6px;align-self:flex-end}
+.date{margin-left:auto;text-align:right;line-height:1.1;color:#fff}
+.date .d{font-family:var(--num);font-style:italic;font-size:30px;font-weight:700;letter-spacing:.01em}
+.date .d small{font-family:var(--disp);font-style:normal;font-size:12px;margin-left:5px;color:var(--gold)}
+.date .st{display:block;font-size:11px;opacity:.72;white-space:nowrap}
+@media (max-width:480px){.date .st .wl{display:none}.logo{font-size:21px}.logo small{display:none}.date .d{font-size:25px}}
 .navs{max-width:960px;margin:0 auto;padding:0 16px;border-bottom:1px solid var(--line2);background:var(--paper)}
 .tabs{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}.tabs::-webkit-scrollbar,.nos::-webkit-scrollbar{display:none}
 .tabs button{border:0;background:none;color:var(--muted);padding:10px 12px 8px;font:inherit;font-size:14px;font-weight:700;
@@ -36,7 +43,7 @@ white-space:nowrap;cursor:pointer;border-bottom:3px solid transparent}
 .nos{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:9px 0 10px}
 .nos button{position:relative;flex:0 0 auto;width:50px;border:1px solid var(--line2);background:var(--panel);color:var(--ink);
 border-radius:8px;cursor:pointer;padding:4px 0 5px;line-height:1.05;text-align:center}
-.nos button b{display:block;font-family:var(--num);font-size:17px;font-weight:600}
+.nos button b{display:block;font-family:var(--num);font-style:italic;font-size:19px;font-weight:700}
 .nos button small{font-family:var(--num);font-size:11px;color:var(--muted)}
 .nos button.on{background:var(--ink);border-color:var(--ink);color:var(--panel)}.nos button.on small{color:var(--panel);opacity:.7}
 .nos button i{position:absolute;top:-6px;right:-6px;font:600 10px/16px var(--num);font-style:normal;width:16px;height:16px;
@@ -47,18 +54,23 @@ border-radius:50%;color:#fff}.nos button i.cS{background:var(--red)}.nos button 
 main{max-width:960px;margin:0 auto;padding:14px 16px 64px}
 /* ===== レースの見出し ===== */
 .race,.today{display:none}.race.on,.today.on{display:block}
-.rh{display:flex;gap:14px;align-items:center;padding:4px 0 14px;border-bottom:2px solid var(--ink);margin-bottom:14px}
-.rno{font-family:var(--num);font-weight:700;font-size:52px;line-height:.9;color:var(--red);letter-spacing:-.02em;flex:0 0 auto}
-.rno small{font-size:20px;margin-left:2px;color:var(--ink)}
+.rh{display:flex;gap:14px;align-items:center;padding:6px 0 14px;margin-bottom:14px;position:relative}
+.rh::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;
+background:linear-gradient(90deg,var(--red) 0 64px,var(--ink) 64px 100%);clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}
+.rno{font-family:var(--num);font-style:italic;font-weight:700;font-size:64px;line-height:.85;color:var(--red);letter-spacing:-.03em;
+flex:0 0 auto}
+.rno small{font-size:22px;margin-left:2px;color:var(--ink)}
 .rt{flex:1;min-width:0}.kick{margin:0;font-size:12px;color:var(--muted)}.kick b{color:var(--ink);font-family:var(--num);font-size:14px}
 .meta .baba{font-weight:700;color:var(--ink2)}.meta .baba.wet{color:var(--navy)}
 .nmb{display:inline-block;font-size:12px;font-weight:700;border:1px solid var(--line2);border-radius:4px;padding:0 4px;margin:1px}
-.rh h2{font-size:22px;font-weight:900;margin:1px 0 0;line-height:1.25}.meta{margin:2px 0 0;font-size:12px;color:var(--muted)}
-.grade{display:inline-block;font-size:11px;font-weight:900;background:var(--ink);color:var(--panel);border-radius:3px;
-padding:1px 6px;margin-left:8px;vertical-align:3px}
+.rh h2{font-family:var(--disp);font-weight:400;font-size:23px;margin:2px 0 0;line-height:1.25;letter-spacing:.01em}
+.meta{margin:3px 0 0;font-size:12px;color:var(--muted)}
+.grade{display:inline-block;font-family:var(--num);font-style:italic;font-size:13px;font-weight:700;color:#1a1300;
+background:linear-gradient(135deg,#f3d27a,#c9a24a 55%,#a37f2c);padding:1px 9px;margin-left:9px;vertical-align:4px;
+transform:skewX(-10deg);letter-spacing:.04em}
 .stamp{flex:0 0 auto;width:62px;height:62px;border-radius:50%;border:2.5px solid currentColor;display:flex;flex-direction:column;
 align-items:center;justify-content:center;transform:rotate(-8deg);line-height:1}
-.stamp small{font-size:9px;font-weight:700;letter-spacing:.1em}.stamp b{font-family:var(--num);font-size:30px;font-weight:700}
+.stamp small{font-size:9px;font-weight:700;letter-spacing:.1em}.stamp b{font-family:var(--disp);font-weight:400;font-size:28px}
 .gS{color:var(--red)}.gA{color:var(--amber)}.gB{color:var(--ink2)}.gC{color:var(--muted);opacity:.7}
 /* ===== 買いの狙い ===== */
 .board{background:var(--panel);border:1px solid var(--line);border-top:4px solid var(--red);border-radius:4px 4px 10px 10px;
@@ -69,7 +81,8 @@ padding:12px 14px 10px;margin-bottom:14px}
 .tix{margin:10px 0 4px}
 .tx{display:grid;grid-template-columns:62px 1fr auto;gap:10px;align-items:center;padding:9px 0;border-top:1px dashed var(--line2)}
 .tx:first-child{border-top:0}
-.tg{font-size:12px;font-weight:900;text-align:center;border-radius:4px;padding:4px 0;color:var(--on);letter-spacing:.06em}
+.tg{font-family:var(--disp);font-weight:400;font-size:13px;text-align:center;padding:5px 0;color:var(--on);letter-spacing:.06em;
+transform:skewX(-10deg)}
 .tg.shobu{background:var(--red)}.tg.hit{background:var(--navy)}.tg.ana{background:var(--amber)}
 .tb{min-width:0}.tb .bet{font-weight:900;font-size:16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
 .tb small{display:block;color:var(--muted);font-size:12px;line-height:1.4}
@@ -175,8 +188,32 @@ border-top:1px solid var(--line)}.ti:first-child{border-top:0}.ti:hover{backgrou
 .note{margin-top:30px;border-top:2px solid var(--ink);padding-top:4px}.note summary{font-weight:900;font-size:15px;cursor:pointer;padding:8px 0}
 .note p{color:var(--ink2);font-size:12px;margin:8px 0;line-height:1.75}
 
-ul{list-style:none;padding:0;margin:0}li a{display:flex;align-items:baseline;gap:10px;background:var(--panel);border-radius:14px;
-box-shadow:var(--shadow);padding:14px 16px;margin:8px 0;color:var(--ink);text-decoration:none}li b{font-size:18px}
-li small{color:var(--muted)}li span{margin-left:auto;color:var(--muted);font-size:20px}</style></head>
-<body><div class="top"><div class="mast"><div class="in"><a class="logo" href="index.html" aria-label="トップページへ">ハラハラ<em>競馬</em><small>AI KEIBA</small></a></div></div></div>
-<main><h2 style="font-size:15px;color:var(--muted);margin:6px 0">開催日を選ぶ</h2><ul><li><a href="20261101.html"><b>11月1日</b><small>2026年・日曜</small><span>›</span></a></li><li><a href="20261031.html"><b>10月31日</b><small>2026年・土曜</small><span>›</span></a></li><li><a href="20261025.html"><b>10月25日</b><small>2026年・日曜</small><span>›</span></a></li><li><a href="20261024.html"><b>10月24日</b><small>2026年・土曜</small><span>›</span></a></li><li><a href="20261018.html"><b>10月18日</b><small>2026年・日曜</small><span>›</span></a></li><li><a href="20261017.html"><b>10月17日</b><small>2026年・土曜</small><span>›</span></a></li><li><a href="20261012.html"><b>10月12日</b><small>2026年・月曜</small><span>›</span></a></li><li><a href="20261011.html"><b>10月11日</b><small>2026年・日曜</small><span>›</span></a></li><li><a href="20261010.html"><b>10月10日</b><small>2026年・土曜</small><span>›</span></a></li><li><a href="20261004.html"><b>10月4日</b><small>2026年・日曜</small><span>›</span></a></li><li><a href="20261003.html"><b>10月3日</b><small>2026年・土曜</small><span>›</span></a></li></ul></main></body></html>
+.hero{color:#fff;padding:26px 16px 30px;border-bottom:3px solid var(--red);
+background:repeating-linear-gradient(-62deg,rgba(255,255,255,.035) 0 1px,transparent 1px 7px),
+radial-gradient(120% 140% at 100% 0%,#5a0d1d 0%,transparent 55%),linear-gradient(100deg,#0c0b0a,#1d1a16)}
+.hero .in{max-width:960px;margin:0 auto}.hero .logo{font-size:40px}.hero .logo small{display:inline}
+.hero p{margin:14px 0 0;font-size:14px;color:#d9d3c7;max-width:34em;line-height:1.8}
+.hero .kp{display:flex;gap:18px;margin-top:16px;flex-wrap:wrap}.hero .kp div{border-left:3px solid var(--red);padding-left:9px}
+.hero .kp b{display:block;font-family:var(--num);font-style:italic;font-size:26px;line-height:1}
+.hero .kp small{font-size:11px;color:#bdb6a8}
+.sec{font-family:var(--disp);font-weight:400;font-size:18px;margin:22px 0 10px}.mh{font-size:14px;color:var(--muted);margin:18px 0 8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.dc{position:relative;display:block;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px 12px;
+color:var(--ink);text-decoration:none;overflow:hidden}.dc:hover{border-color:var(--ink)}
+.dc i{font-style:normal;font-size:10px;font-weight:700;letter-spacing:.08em;color:var(--red)}.dc i.past{color:var(--muted)}
+.dc i.live{color:#fff;background:var(--red);padding:1px 6px}
+.dc b{display:block;font-family:var(--num);font-style:italic;font-weight:700;font-size:34px;line-height:1;margin:4px 0 4px}
+.dc b small{font-family:var(--disp);font-style:normal;font-weight:400;font-size:13px;margin-left:6px;color:var(--muted)}
+.dc span{font-size:12px;color:var(--ink2)}.dc em{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-style:normal;
+font-size:24px;color:var(--line2)}
+.dc.big{border:0;border-left:6px solid var(--red);background:var(--panel);padding:16px 18px}.dc.big b{font-size:48px}
+.ups{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}</style></head>
+<body><header class="hero"><div class="in"><a class="logo" href="index.html" aria-label="トップページへ"><span class="hh">ハラハラ</span><em><span>競馬</span></em><small>AI KEIBA</small></a>
+<p>オッズを出発点に、市場が見落としているズレを AI で探す競馬サイト。能力の印と、オッズに対して得な「狙い」を、
+レースの日は発走60分前から5分ごとに更新します。</p>
+<div class="kp"><div><b>129%</b><small>勝負レース（複勝）</small></div><div><b>111%</b><small>的中重視（複勝）</small></div>
+<div><b>142%</b><small>穴・回収率重視（単勝）</small></div></div>
+<p style="font-size:11px;color:#9b9488;margin-top:8px">回収率は 2023〜2026年に発走5分前のオッズで買った場合の検証値。将来の成績を約束するものではありません。</p>
+</div></header>
+<main><h2 class="sec">これからの開催</h2><div class="ups"><a class='dc big' href='20261031.html'><i class='live'>開催中</i><b>10.31<small>土</small></b><span>東京・京都</span><em>›</em></a><a class='dc big' href='20261101.html'><i>次の開催</i><b>11.01<small>日</small></b><span>東京・京都</span><em>›</em></a></div>
+<h2 class="sec">過去の開催</h2><h3 class='mh'>2026年10月</h3><div class='grid'><a class='dc' href='20261025.html'><i class='past'>振り返り</i><b>10.25<small>日</small></b><span>新潟・東京・京都</span><em>›</em></a><a class='dc' href='20261024.html'><i class='past'>振り返り</i><b>10.24<small>土</small></b><span>新潟・東京・京都</span><em>›</em></a><a class='dc' href='20261018.html'><i class='past'>振り返り</i><b>10.18<small>日</small></b><span>新潟・東京・京都</span><em>›</em></a><a class='dc' href='20261017.html'><i class='past'>振り返り</i><b>10.17<small>土</small></b><span>新潟・東京・京都</span><em>›</em></a><a class='dc' href='20261012.html'><i class='past'>振り返り</i><b>10.12<small>月</small></b><span>東京・京都</span><em>›</em></a><a class='dc' href='20261011.html'><i class='past'>振り返り</i><b>10.11<small>日</small></b><span>東京・京都</span><em>›</em></a><a class='dc' href='20261010.html'><i class='past'>振り返り</i><b>10.10<small>土</small></b><span>東京・京都</span><em>›</em></a><a class='dc' href='20261004.html'><i class='past'>振り返り</i><b>10.04<small>日</small></b><span>東京・京都</span><em>›</em></a><a class='dc' href='20261003.html'><i class='past'>振り返り</i><b>10.03<small>土</small></b><span>東京・京都</span><em>›</em></a></div></main></body></html>
