@@ -13,7 +13,8 @@ content="width=device-width,initial-scale=1"><title>ハラハラ競馬</title><l
 --redbg:#3a151d;--navybg:#17213a;--amberbg:#352514;--mast:#000;--mastink:#f1ede4;--on:#11100e}
 *{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:"Zen Kaku Gothic New","Noto Sans JP",-apple-system,
-BlinkMacSystemFont,"Hiragino Sans","Yu Gothic UI",sans-serif;font-size:15px;line-height:1.6;font-feature-settings:"palt"}
+BlinkMacSystemFont,"Hiragino Sans","Yu Gothic UI",sans-serif;font-size:14px;line-height:1.65;font-feature-settings:"palt";
+letter-spacing:.02em;-webkit-font-smoothing:antialiased}
 b{font-weight:700}.muted{color:var(--muted);font-size:12px}
 .n{font-family:var(--num);font-weight:600;letter-spacing:.01em;font-feature-settings:"tnum"}
 /* ===== マストヘッド ===== */
@@ -54,6 +55,7 @@ border-radius:50%;color:#fff}.nos button i.cS{background:var(--red)}.nos button 
 main{max-width:960px;margin:0 auto;padding:14px 16px 64px}
 /* ===== レースの見出し ===== */
 .race,.today{display:none}.race.on,.today.on{display:block}
+.race.skip .stamp{color:var(--muted)}.race.skip>.wait{padding:18px 0;color:var(--ink2)}
 .rh{display:flex;gap:14px;align-items:center;padding:6px 0 14px;margin-bottom:14px;position:relative}
 .rh::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;
 background:linear-gradient(90deg,var(--red) 0 64px,var(--ink) 64px 100%);clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}
@@ -75,7 +77,7 @@ align-items:center;justify-content:center;transform:rotate(-8deg);line-height:1}
 /* ===== 買いの狙い ===== */
 .board{background:var(--panel);border:1px solid var(--line);border-top:4px solid var(--red);border-radius:4px 4px 10px 10px;
 padding:12px 14px 10px;margin-bottom:14px}
-.bh{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}.bh h3{margin:0;font-size:16px;font-weight:900}
+.bh{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}.bh h3{margin:0;font-size:16px;font-weight:700}
 .bh .upd{font-size:12px;color:var(--muted)}.bh .facts{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
 .fact{font-size:11px;border:1px solid var(--line2);border-radius:999px;padding:1px 8px;color:var(--ink2)}.fact b{color:var(--ink)}
 .tix{margin:10px 0 4px}
@@ -84,14 +86,14 @@ padding:12px 14px 10px;margin-bottom:14px}
 .tg{font-family:var(--disp);font-weight:400;font-size:13px;text-align:center;padding:5px 0;color:var(--on);letter-spacing:.06em;
 transform:skewX(-10deg)}
 .tg.shobu{background:var(--red)}.tg.hit{background:var(--navy)}.tg.ana{background:var(--amber)}
-.tb{min-width:0}.tb .bet{font-weight:900;font-size:16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.tb{min-width:0}.tb .bet{font-weight:700;font-size:16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
 .tb small{display:block;color:var(--muted);font-size:12px;line-height:1.4}
 .tv{text-align:right;line-height:1.1}.tv b{display:block;font-family:var(--num);font-size:22px;font-weight:600;color:var(--good)}
 .tv small{font-size:10px;color:var(--muted)}
-.rs{display:block;margin-top:3px;font-size:11px;font-weight:900;border-radius:3px;padding:0 5px;text-align:center}
+.rs{display:block;margin-top:3px;font-size:11px;font-weight:700;border-radius:3px;padding:0 5px;text-align:center}
 .rs.hitr{background:var(--good);color:var(--on)}.rs.miss{background:var(--chip);color:var(--muted)}
 .score{font-size:12px;font-weight:700;color:var(--ink2);margin-left:auto}
-.tri{color:var(--amber);font-weight:900}
+.tri{color:var(--amber);font-weight:700}
 .idle{font-size:12px;color:var(--muted);padding:6px 0 2px;border-top:1px dashed var(--line2)}
 .legend{display:flex;gap:4px 14px;flex-wrap:wrap;font-size:11px;color:var(--muted);margin-top:6px;padding-top:8px;border-top:1px solid var(--line)}
 .legend span::before{content:"";display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:4px;vertical-align:0}
@@ -104,21 +106,22 @@ background:var(--ink);color:var(--panel);font:600 14px/1 var(--num);padding:0 4p
 /* ===== カード ===== */
 .cards{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media (max-width:680px){.cards{grid-template-columns:1fr}}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;min-width:0}.card.wide{grid-column:1/-1}
-.card h3{font-size:14px;font-weight:900;margin:0 0 10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.card h3{font-size:14px;font-weight:700;margin:0 0 10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .card h3::before{content:"";width:4px;height:14px;background:var(--red);border-radius:1px}
-.card p{margin:4px 0}.pill{font-size:11px;border:1px solid var(--line2);border-radius:999px;padding:0 8px;font-weight:700;color:var(--muted)}
+.card p{margin:4px 0;font-size:13px;color:var(--ink2)}.card p b{color:var(--ink)}.pill{font-size:11px;border:1px solid var(--line2);border-radius:999px;padding:0 8px;font-weight:700;color:var(--muted)}
 .axis{display:grid;grid-template-columns:64px 1fr;gap:8px;align-items:center;padding:7px 0;border-top:1px solid var(--line)}
-.axis:first-of-type{border-top:0}.lb{font-weight:900;font-size:14px;line-height:1.1}.lb small{display:block;font-size:10px;font-weight:500;color:var(--muted)}
-.marks{display:flex;gap:4px 12px;flex-wrap:wrap;align-items:center}
-.mi{display:inline-flex;align-items:center;gap:3px;font-size:19px}.mi b{font-size:20px;font-weight:700;line-height:1}
-.mi .u{font-size:13px;min-width:22px;height:22px}.aim .mi{font-size:14px}
-.chipt{font-size:11px;font-weight:900;color:var(--on);border-radius:3px;padding:1px 5px;line-height:1.5}
+.axis:first-of-type{border-top:0}.lb{font-weight:700;font-size:13px;line-height:1.15}.lb small{display:block;font-size:10px;font-weight:500;color:var(--muted)}
+.marks{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.mi{display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:700;padding:2px 9px 2px 7px;
+border:1px solid var(--line2);border-radius:999px;background:var(--panel)}.mi b{font-size:14px;font-weight:700;line-height:1}
+.mi .u{font-size:12px;min-width:20px;height:20px}.aim .mi{padding-left:3px}
+.chipt{font-size:11px;font-weight:700;color:var(--on);border-radius:3px;padding:1px 5px;line-height:1.5}
 .chipt.star{background:none;color:var(--ink2);border:1px solid var(--line2);font-weight:700}
 .chipt.shobu{background:var(--red)}.chipt.hit{background:var(--navy)}.chipt.ana{background:var(--amber)}
 .sum{font-size:13px;color:var(--ink2);margin-top:8px!important}
 .grp{display:inline-flex;align-items:center;gap:3px;margin:3px 12px 3px 0}.grp b{font-size:11px;color:var(--muted);margin-right:2px}
-.sub{font-size:16px;font-weight:900;margin:22px 0 8px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
-.sub small{font-size:11px;color:var(--muted);font-weight:400}
+.sub{font-family:var(--disp);font-size:16px;font-weight:400;margin:22px 0 8px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.sub small{font-family:"Zen Kaku Gothic New",sans-serif;font-size:11px;color:var(--muted);font-weight:400}
 table{border-collapse:collapse;width:100%;font-size:13px}th,td{padding:7px 6px;border-bottom:1px solid var(--line);
 text-align:left;white-space:nowrap}th{color:var(--muted);font-weight:500;font-size:11px}tr:last-child td{border-bottom:0}
 .num{text-align:right;font-family:var(--num);font-size:14px}.combo{font-size:15px;white-space:normal;line-height:1.7}.tk td{vertical-align:top}
@@ -137,10 +140,10 @@ padding:3px 11px;font:inherit;font-size:12px;font-weight:700;cursor:pointer}
 cursor:pointer;list-style:none}.horse summary::-webkit-details-marker{display:none}
 .horse[open]{background:color-mix(in srgb,var(--chip) 45%,var(--panel))}.horse summary:hover{background:color-mix(in srgb,var(--chip) 35%,transparent)}
 .uma{font:600 16px/30px var(--num);text-align:center;border-radius:4px;width:30px;height:30px;border:1px solid transparent}
-.mk{display:flex;flex-direction:column;align-items:center;gap:2px;line-height:1}.mk b{font-size:22px;font-weight:700;min-height:22px}
+.mk{display:flex;flex-direction:column;align-items:center;gap:2px;line-height:1}.mk b{font-size:18px;font-weight:700;min-height:20px}
 .tag{font-style:normal}
 .m0{color:var(--red)}.m1{color:var(--navy)}.m2{color:var(--good)}.m3,.m4{color:var(--ink2)}
-.name{min-width:0}.nm{display:flex;align-items:center;gap:6px;flex-wrap:wrap}.nm b{font-size:16px;font-weight:900}
+.name{min-width:0}.nm{display:flex;align-items:center;gap:6px;flex-wrap:wrap}.nm b{font-size:15px;font-weight:700}
 .name small{display:block;color:var(--muted);font-size:12px;line-height:1.45}
 .res{font:600 11px/1.6 var(--num);background:var(--ink);color:var(--panel);border-radius:3px;padding:0 5px;white-space:nowrap}
 .evh{color:var(--ink2)!important}.evh .o{font-family:var(--num);font-size:14px;font-weight:600;color:var(--ink)}
@@ -173,20 +176,20 @@ cursor:pointer;list-style:none}.horse summary::-webkit-details-marker{display:no
 .w4{background:#2a5bd7;color:#fff}.w5{background:#f2cf1d;color:#111}.w6{background:#1f9a4b;color:#fff}.w7{background:#f08a24;color:#fff}
 .w8{background:#f39cc2;color:#111}
 /* ===== 今日の狙い ===== */
-.today h2{font-size:24px;font-weight:900;margin:4px 0 2px}.today .lead{color:var(--muted);font-size:13px;margin:0 0 16px}
-.tsec{margin:0 0 20px}.tsec h3{font-size:16px;font-weight:900;margin:0;display:flex;gap:8px;align-items:center}
+.today h2{font-family:var(--disp);font-size:22px;font-weight:400;margin:4px 0 2px}.today .lead{color:var(--muted);font-size:13px;margin:0 0 16px}
+.tsec{margin:0 0 20px}.tsec h3{font-size:16px;font-weight:700;margin:0;display:flex;gap:8px;align-items:center}
 .tsec h3 .cnt{font:600 13px/20px var(--num);min-width:20px;height:20px;text-align:center;border-radius:10px;color:var(--on);padding:0 6px}
 .tsec .desc{font-size:12px;color:var(--muted);margin:2px 0 8px}
 .tlist{background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden}
 .ti{display:grid;grid-template-columns:4px 64px 1fr auto;gap:12px;align-items:center;padding:10px 12px 10px 0;cursor:pointer;
 border-top:1px solid var(--line)}.ti:first-child{border-top:0}.ti:hover{background:color-mix(in srgb,var(--chip) 40%,transparent)}
 .ti .sw{align-self:stretch;margin:-10px 0}.ti.shobu .sw{background:var(--red)}.ti.hit .sw{background:var(--navy)}.ti.ana .sw{background:var(--amber)}
-.ti .tt b{display:block;font-weight:900;font-size:14px}.ti .tt small{font-family:var(--num);color:var(--muted);font-size:13px}
-.ti .bet{font-weight:900;font-size:15px;display:flex;gap:6px;align-items:center;flex-wrap:wrap}.ti .bet small{color:var(--muted);font-weight:400;font-size:12px}
+.ti .tt b{display:block;font-weight:700;font-size:14px}.ti .tt small{font-family:var(--num);color:var(--muted);font-size:13px}
+.ti .bet{font-weight:700;font-size:15px;display:flex;gap:6px;align-items:center;flex-wrap:wrap}.ti .bet small{color:var(--muted);font-weight:400;font-size:12px}
 .ti .tv b{font-size:20px}
 .empty{background:var(--panel);border:1px dashed var(--line2);border-radius:10px;padding:14px;color:var(--muted);font-size:13px}
 /* ===== 説明 ===== */
-.note{margin-top:30px;border-top:2px solid var(--ink);padding-top:4px}.note summary{font-weight:900;font-size:15px;cursor:pointer;padding:8px 0}
+.note{margin-top:30px;border-top:2px solid var(--ink);padding-top:4px}.note summary{font-weight:700;font-size:15px;cursor:pointer;padding:8px 0}
 .note p{color:var(--ink2);font-size:12px;margin:8px 0;line-height:1.75}
 
 .hero{color:#fff;padding:26px 16px 30px;border-bottom:3px solid var(--red);
@@ -209,7 +212,7 @@ color:var(--ink);text-decoration:none;overflow:hidden}.dc:hover{border-color:var
 font-size:24px;color:var(--line2)}
 .dc.big{border:0;border-left:6px solid var(--red);background:var(--panel);padding:16px 18px}.dc.big b{font-size:48px}
 .ups{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
-.btn{display:inline-block;margin-top:16px;background:var(--red);color:#fff;text-decoration:none;font-weight:900;font-size:14px;
+.btn{display:inline-block;margin-top:16px;background:var(--red);color:#fff;text-decoration:none;font-weight:700;font-size:14px;
 padding:8px 18px;transform:skewX(-10deg);box-shadow:3px 3px 0 rgba(0,0,0,.35)}</style></head>
 <body><header class="hero"><div class="in"><a class="logo" href="index.html" aria-label="トップページへ"><span class="hh">ハラハラ</span><em><span>競馬</span></em><small>AI KEIBA</small></a>
 <p>オッズを出発点に、市場が見落としているズレを AI で探す競馬サイト。能力の印と、オッズに対して得な「狙い」を、
