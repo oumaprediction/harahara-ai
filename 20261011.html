@@ -105,6 +105,8 @@ transform:skewX(-10deg)}
 background:var(--ink);color:var(--panel);font:600 14px/1 var(--num);padding:0 4px}
 .u.sm{min-width:20px;height:20px;font-size:12px}
 .cards .u,.board .u{cursor:pointer;transition:transform .12s}.cards .u:hover,.board .u:hover{transform:scale(1.15);background:var(--red)}
+.marks .mi{cursor:pointer;transition:border-color .12s,background .12s}.marks .mi:hover{border-color:var(--red);background:var(--redbg)}
+.marks .mi:hover .u{transform:none}.marks .mi:active{transform:scale(.97)}
 .horse.flash{animation:flash 1.6s ease-out}
 @keyframes flash{0%,30%{box-shadow:inset 4px 0 0 var(--red);background:var(--redbg)}100%{box-shadow:inset 4px 0 0 transparent}}
 /* ===== カード ===== */
@@ -9620,7 +9622,8 @@ const sec=(k,title,desc)=>'<div class="tsec"><h3>'+title+'<span class="cnt" styl
 '</span>'+score(k)+'</h3><p class="desc">'+desc+'・'+REC[k]+'</p>'+(L[k].length?'<div class="tlist">'+L[k].sort((a,b)=>a.st.localeCompare(b.st)).map(x=>x.html).join('')+
 '</div>':'<div class="empty">今のところ該当なし</div>')+'</div>';
 const any=Object.keys(D.races).some(hasOdds);
-el.innerHTML='<h2>今日の狙い</h2><p class="lead">'+(any?D.label+'。右の数字は期待値（1.00 で元が取れる計算）。タップでそのレースへ':
+el.innerHTML='<h2>今日の狙い</h2><p class="lead">'+(any?D.label+'。右の数字は期待値（1.00 で元が取れる計算）。タップでそのレースへ'+
+(D.label.indexOf('前日')>=0?'。<b>前日のオッズなので、当日の締切までに大きく動きます</b>（成績の数字は発走5分前のオッズで選んだもの）':''):
 'オッズはまだ取り込まれていません。当日の朝から更新されます（発走60分前からは5分ごと）。')+'</p>'+
 sec('shobu','勝負レース','掛け金を上げてもいいレース（複勝）。3日に1レースほど')+
 sec('hit','的中重視','当てにいく複勝。1日1レースほど')+sec('ana','穴・回収率重視','7〜12番人気の単勝。当たりは平均20倍で、長く外れても続ける前提');
@@ -9637,7 +9640,8 @@ const k=(SORT==='ninki'||SORT==='ai')&&!hasOdds(rid)?'u':SORT;
 r.querySelectorAll('.sortbar button').forEach(b=>{b.classList.toggle('on',b.dataset.k===k);
 b.disabled=(b.dataset.k==='ninki'||b.dataset.k==='ai')&&!hasOdds(rid);});}
 // 評価・展開・買い目の馬番の丸を押すと、その馬の行へ移って詳細を開く
-document.addEventListener('click',e=>{const u=e.target.closest('.race .u');if(!u||u.closest('.horses'))return;
+document.addEventListener('click',e=>{const t=e.target.closest('.race .mi,.race .u');if(!t||t.closest('.horses'))return;
+const u=t.classList.contains('u')?t:t.querySelector('.u');if(!u)return;
 const r=u.closest('.race'),h=r.querySelector('.horse[data-u="'+u.textContent.trim()+'"]');if(!h)return;
 h.open=true;window.scrollTo(0,h.getBoundingClientRect().top+scrollY-document.querySelector('.top').offsetHeight-8);h.classList.remove('flash');void h.offsetWidth;h.classList.add('flash');});
 document.addEventListener('click',e=>{const b=e.target.closest('.sortbar button');if(!b||b.disabled)return;SORT=b.dataset.k;
