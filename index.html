@@ -103,6 +103,9 @@ transform:skewX(-10deg)}
 .u{display:inline-flex;align-items:center;justify-content:center;min-width:24px;height:24px;border-radius:50%;
 background:var(--ink);color:var(--panel);font:600 14px/1 var(--num);padding:0 4px}
 .u.sm{min-width:20px;height:20px;font-size:12px}
+.cards .u,.board .u{cursor:pointer;transition:transform .12s}.cards .u:hover,.board .u:hover{transform:scale(1.15);background:var(--red)}
+.horse.flash{animation:flash 1.6s ease-out}
+@keyframes flash{0%,30%{box-shadow:inset 4px 0 0 var(--red);background:var(--redbg)}100%{box-shadow:inset 4px 0 0 transparent}}
 /* ===== カード ===== */
 .cards{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media (max-width:680px){.cards{grid-template-columns:1fr}}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;min-width:0}.card.wide{grid-column:1/-1}
