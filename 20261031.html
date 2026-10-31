@@ -55,6 +55,7 @@ border-radius:50%;color:#fff}.nos button i.cS{background:var(--red)}.nos button 
 main{max-width:960px;margin:0 auto;padding:14px 16px 64px}
 /* ===== レースの見出し ===== */
 .race,.today{display:none}.race.on,.today.on{display:block}
+.race.skip .stamp{color:var(--muted)}.race.skip>.wait{padding:18px 0;color:var(--ink2)}
 .rh{display:flex;gap:14px;align-items:center;padding:6px 0 14px;margin-bottom:14px;position:relative}
 .rh::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;
 background:linear-gradient(90deg,var(--red) 0 64px,var(--ink) 64px 100%);clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}
@@ -191,7 +192,7 @@ border-top:1px solid var(--line)}.ti:first-child{border-top:0}.ti:hover{backgrou
 .note p{color:var(--ink2);font-size:12px;margin:8px 0;line-height:1.75}
 </style></head><body>
 <div class="top"><div class="mast"><div class="in"><a class="logo" href="index.html" aria-label="トップページへ"><span class="hh">ハラハラ</span><em><span>競馬</span></em><small>AI KEIBA</small></a>
-<div class="date"><span class="d">10.31<small>土</small></span><span class="st"><span id="olabel"></span><span class="wl">・馬体重 10/23R 反映・馬場 23/23R 反映</span></span></div></div></div>
+<div class="date"><span class="d">10.31<small>土</small></span><span class="st"><span id="olabel"></span><span class="wl">・馬体重 10/24R 反映・馬場 23/24R 反映</span></span></div></div></div>
 <div class="navs"><div class="tabs"></div><div class="nos"></div></div></div>
 <main><section class="today"></section>
 <section class="race" id="r2026103105041001" data-place="東京" data-no="1" data-start="0950">
@@ -5379,6 +5380,15 @@ border-top:1px solid var(--line)}.ti:first-child{border-top:0}.ti:hover{backgrou
   </div>
 </details></div>
 </section>
+<section class="race skip" id="r2026103108041004" data-place="京都" data-no="4" data-start="1135">
+  <header class="rh">
+    <div class="rno">4<small>R</small></div>
+    <div class="rt"><p class="kick">京都・障2910m・<b>11:35</b> 発走</p>
+      <h2>未勝利</h2><p class="meta">未勝利</p></div>
+    <div class="stamp"><small>自信度</small><b>—</b></div>
+  </header>
+  <p class="wait">障害レースは AI の対象外です（平地のレースだけで学習しているため）。</p>
+</section>
 <section class="race" id="r2026103108041005" data-place="京都" data-no="5" data-start="1225">
   <header class="rh">
     <div class="rno">5<small>R</small></div>
@@ -8562,7 +8572,7 @@ const tvHtml=(ev,x)=>'<div class="tv"><b>'+ev.toFixed(2)+'</b><small>期待値</
 function board(rid){const el=document.querySelector('.board[data-r="'+rid+'"]');if(!el)return;
 const legend='<div class="legend"><span class="shobu">勝負 '+REC.shobu+'</span><span class="hit">的中 '+REC.hit+
 '</span><span class="ana">穴 '+REC.ana+'</span><span>（2023〜26・5分前のオッズ）</span></div>';
-if(!hasOdds(rid)){el.innerHTML='<div class="bh"><h3>買いの狙い</h3></div><p class="wait">当日、発走60分前からオッズを取り込むと、'+
+if(!hasOdds(rid)){el.innerHTML='<div class="bh"><h3>買いの狙い</h3></div><p class="wait">当日の朝からオッズを取り込むと、'+
 '<b>勝負</b>（掛け金アップ候補）・<b>的中</b>（当てにいく複勝）・<b>穴</b>（回収率重視の単勝）をここに出します。</p>'+legend;return;}
 const P=picks(rid),inf=(D.info||{})[rid]||{},L=items(rid);
 const facts='<span class="facts">'+(inf.are_lv?'<span class="fact">荒れ度 <b>'+inf.are_lv+'</b></span>':'')+
@@ -8592,7 +8602,7 @@ const sec=(k,title,desc)=>'<div class="tsec"><h3>'+title+'<span class="cnt" styl
 '</div>':'<div class="empty">今のところ該当なし</div>')+'</div>';
 const any=Object.keys(D.races).some(hasOdds);
 el.innerHTML='<h2>今日の狙い</h2><p class="lead">'+(any?D.label+'。右の数字は期待値（1.00 で元が取れる計算）。タップでそのレースへ':
-'オッズはまだ取り込まれていません。当日、発走60分前から5分ごとに更新されます。')+'</p>'+
+'オッズはまだ取り込まれていません。当日の朝から更新されます（発走60分前からは5分ごと）。')+'</p>'+
 sec('shobu','勝負レース','掛け金を上げてもいいレース（複勝）。3日に1レースほど')+
 sec('hit','的中重視','当てにいく複勝。1日1レースほど')+sec('ana','穴・回収率重視','7〜12番人気の単勝。当たりは平均20倍で、長く外れても続ける前提');
 el.querySelectorAll('.ti').forEach(x=>x.onclick=()=>show(x.dataset.p,x.dataset.n));}
