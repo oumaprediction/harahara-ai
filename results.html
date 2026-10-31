@@ -104,6 +104,8 @@ transform:skewX(-10deg)}
 background:var(--ink);color:var(--panel);font:600 14px/1 var(--num);padding:0 4px}
 .u.sm{min-width:20px;height:20px;font-size:12px}
 .cards .u,.board .u{cursor:pointer;transition:transform .12s}.cards .u:hover,.board .u:hover{transform:scale(1.15);background:var(--red)}
+.marks .mi{cursor:pointer;transition:border-color .12s,background .12s}.marks .mi:hover{border-color:var(--red);background:var(--redbg)}
+.marks .mi:hover .u{transform:none}.marks .mi:active{transform:scale(.97)}
 .horse.flash{animation:flash 1.6s ease-out}
 @keyframes flash{0%,30%{box-shadow:inset 4px 0 0 var(--red);background:var(--redbg)}100%{box-shadow:inset 4px 0 0 transparent}}
 /* ===== カード ===== */
@@ -225,7 +227,7 @@ white-space:nowrap}.tip b{font-family:var(--num);font-size:14px}
 <div class="top"><div class="mast"><div class="in"><a class="logo" href="index.html" aria-label="トップページへ"><span class="hh">ハラハラ</span><em><span>競馬</span></em><small>AI KEIBA</small></a></div></div></div>
 <main class="pg"><h1>成績</h1>
 <h3 class="sub">実際の記録<small>当日にサイトで出した狙い</small></h3>
-<p class='note2'>11/1 の開催から、当日に発走5分前ごろ出していた狙いを記録して、ここに実績を出します。</p>
+<p class='note2'>10/31〜10/31・1日。当日に実際に出していた狙い（発走3〜8分前）を確定の払戻で計算</p><div class='card'><div class='scroll'><table class='cmp'><thead><tr><th>買い方</th><th class='num'>点数</th><th class='num'>的中率</th><th class='num'>回収率</th><th class='num'>収支</th><th class='num'>最長連敗</th></tr></thead><tbody><tr data-k='all' class='rec'><td><b>全部まとめて</b></td><td class='num'>6</td><td class='num'>0%</td><td class='num'>0%</td><td class='num neg'>-600円</td><td class='num'>2</td></tr><tr data-k='shobu' class='rec'><td>勝負</td><td class='num' colspan='5'>まだ無し</td></tr><tr data-k='hit' class='rec'><td>的中</td><td class='num' colspan='5'>まだ無し</td></tr><tr data-k='fuku' class='rec'><td>的中＋勝負</td><td class='num' colspan='5'>まだ無し</td></tr><tr data-k='ana' class='rec'><td><b>穴（単勝）</b></td><td class='num'>3</td><td class='num'>0%</td><td class='num'>0%</td><td class='num neg'>-300円</td><td class='num'>2</td></tr><tr data-k='ana_wide' class='rec'><td><b>穴（単勝＋ワイド）</b></td><td class='num'>6</td><td class='num'>0%</td><td class='num'>0%</td><td class='num neg'>-600円</td><td class='num'>2</td></tr><tr data-k='wide' class='rec'><td><b>穴（ワイドだけ）</b></td><td class='num'>3</td><td class='num'>0%</td><td class='num'>0%</td><td class='num neg'>-300円</td><td class='num'>2</td></tr><tr data-k='tri' class='rec'><td><b>穴（3連単・一撃）</b></td><td class='num'>24</td><td class='num'>0%</td><td class='num'>0%</td><td class='num neg'>-2,400円</td><td class='num'>1</td></tr></tbody></table></div></div>
 <h3 class="sub">さかのぼって当てはめた成績<small>1/4〜10/18・89日・2,704レース</small></h3>
 <p class="lead">買い方のボタンを押すと切り替わります。発走5分前のオッズで選び、確定の払戻で計算（1点100円）</p>
 <div class="chips"><button data-k='all'>全部まとめて</button><button data-k='shobu'>勝負</button><button data-k='hit'>的中</button><button data-k='fuku'>的中＋勝負</button><button data-k='ana'>穴（単勝）</button><button data-k='ana_wide'>穴（単勝＋ワイド）</button><button data-k='wide'>穴（ワイドだけ）</button><button data-k='tri'>穴（3連単・一撃）</button><button data-k='hon_tan'>参考: ◎の単勝</button><button data-k='hon_fuku'>参考: ◎の複勝</button></div>
