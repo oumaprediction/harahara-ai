@@ -104,6 +104,8 @@ transform:skewX(-10deg)}
 background:var(--ink);color:var(--panel);font:600 14px/1 var(--num);padding:0 4px}
 .u.sm{min-width:20px;height:20px;font-size:12px}
 .cards .u,.board .u{cursor:pointer;transition:transform .12s}.cards .u:hover,.board .u:hover{transform:scale(1.15);background:var(--red)}
+.marks .mi{cursor:pointer;transition:border-color .12s,background .12s}.marks .mi:hover{border-color:var(--red);background:var(--redbg)}
+.marks .mi:hover .u{transform:none}.marks .mi:active{transform:scale(.97)}
 .horse.flash{animation:flash 1.6s ease-out}
 @keyframes flash{0%,30%{box-shadow:inset 4px 0 0 var(--red);background:var(--redbg)}100%{box-shadow:inset 4px 0 0 transparent}}
 /* ===== カード ===== */
