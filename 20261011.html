@@ -104,6 +104,9 @@ transform:skewX(-10deg)}
 .u{display:inline-flex;align-items:center;justify-content:center;min-width:24px;height:24px;border-radius:50%;
 background:var(--ink);color:var(--panel);font:600 14px/1 var(--num);padding:0 4px}
 .u.sm{min-width:20px;height:20px;font-size:12px}
+.cards .u,.board .u{cursor:pointer;transition:transform .12s}.cards .u:hover,.board .u:hover{transform:scale(1.15);background:var(--red)}
+.horse.flash{animation:flash 1.6s ease-out}
+@keyframes flash{0%,30%{box-shadow:inset 4px 0 0 var(--red);background:var(--redbg)}100%{box-shadow:inset 4px 0 0 transparent}}
 /* ===== カード ===== */
 .cards{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media (max-width:680px){.cards{grid-template-columns:1fr}}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;min-width:0}.card.wide{grid-column:1/-1}
@@ -9633,6 +9636,10 @@ const k=(SORT==='ninki'||SORT==='ai')&&!hasOdds(rid)?'u':SORT;
 [...box.children].sort((a,b)=>sortVal(rid,a,k)-sortVal(rid,b,k)).forEach(x=>box.appendChild(x));
 r.querySelectorAll('.sortbar button').forEach(b=>{b.classList.toggle('on',b.dataset.k===k);
 b.disabled=(b.dataset.k==='ninki'||b.dataset.k==='ai')&&!hasOdds(rid);});}
+// 評価・展開・買い目の馬番の丸を押すと、その馬の行へ移って詳細を開く
+document.addEventListener('click',e=>{const u=e.target.closest('.race .u');if(!u||u.closest('.horses'))return;
+const r=u.closest('.race'),h=r.querySelector('.horse[data-u="'+u.textContent.trim()+'"]');if(!h)return;
+h.open=true;window.scrollTo(0,h.getBoundingClientRect().top+scrollY-document.querySelector('.top').offsetHeight-8);h.classList.remove('flash');void h.offsetWidth;h.classList.add('flash');});
 document.addEventListener('click',e=>{const b=e.target.closest('.sortbar button');if(!b||b.disabled)return;SORT=b.dataset.k;
 try{localStorage.setItem('paper-sort',SORT)}catch(x){}races.forEach(sortRace);});
 function evAll(){Object.keys(D.races).forEach(rid=>{evRace(rid);board(rid);aimRow(rid);});tkAll();today();markNav();
