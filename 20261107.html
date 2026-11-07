@@ -199,7 +199,7 @@ border-top:1px solid var(--line)}.ti:first-child{border-top:0}.ti:hover{backgrou
 .note p{color:var(--ink2);font-size:12px;margin:8px 0;line-height:1.75}
 </style></head><body>
 <div class="top"><div class="mast"><div class="in"><a class="logo" href="index.html" aria-label="トップページへ"><span class="hh">ハラハラ</span><em><span>競馬</span></em><small>AI KEIBA</small></a>
-<div class="date"><span class="d">11.07<small>土</small></span><span class="st"><span id="olabel"></span><span class="wl">・馬体重 未発表・馬場 未発表</span></span></div></div></div>
+<div class="date"><span class="d">11.07<small>土</small></span><span class="st"><span id="olabel"></span><span class="wl">・馬体重 35/36R 反映・馬場 35/36R 反映</span></span></div></div></div>
 <div class="navs"><div class="tabs"></div><div class="nos"></div></div></div>
 <main><section class="today"></section>
 <section class="race" id="r2026110703030101" data-place="福島" data-no="1" data-start="0945">
@@ -14043,7 +14043,10 @@ function tkAll(){document.querySelectorAll('.tkev').forEach(el=>{const t=((D.tk|
 if(!t||!t.n_odds){el.textContent='';return;}el.innerHTML=(t.synth?'合成 '+t.synth+'倍・':'')+'期待値 <span class="'+(t.ev>=1?'hot':'')+'">'+t.ev.toFixed(2)+'</span>'+(t.tori?'・トリガミ '+t.tori+'点':'')+(t.synth&&t.synth<1?'<br><b class="warn">合成オッズが1倍未満（当たっても全体ではマイナス）</b>':'');});}
 const races=[...document.querySelectorAll('.race')];const places=[...new Set(races.map(r=>r.dataset.place))];
 const tabs=document.querySelector('.tabs'),nos=document.querySelector('.nos'),todayEl=document.querySelector('.today');
-function show(p,n){tabs.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.p===p));
+let curN=1;// 場を切り替えても同じレース番号のまま（無ければ近い番号）
+function nearN(p){const ns=races.filter(r=>r.dataset.place===p).map(r=>+r.dataset.no);
+return ns.includes(curN)?curN:ns.reduce((a,b)=>Math.abs(b-curN)<Math.abs(a-curN)?b:a,ns[0]);}
+function show(p,n){if(p!==TODAY)curN=+n;tabs.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.p===p));
 nos.innerHTML='';todayEl.classList.toggle('on',p===TODAY);nos.style.display=p===TODAY?'none':'';
 races.filter(r=>r.dataset.place===p).forEach(r=>{const b=document.createElement('button');b.dataset.r=r.id;
 const g=r.querySelector('.stamp b').textContent,st=r.dataset.start||'';
@@ -14053,7 +14056,7 @@ races.forEach(r=>r.classList.toggle('on',r.dataset.place===p&&r.dataset.no===Str
 const on=nos.querySelector('.on');if(on)nos.scrollLeft=on.offsetLeft-nos.clientWidth/2+on.clientWidth/2;
 try{localStorage.setItem('paper-pos-'+D.date,JSON.stringify([p,n]))}catch(e){}window.scrollTo(0,0);}
 [[TODAY,'今日の狙い'],...places.map(p=>[p,p])].forEach(([p,label])=>{const b=document.createElement('button');b.textContent=label;
-b.dataset.p=p;if(p===TODAY)b.classList.add('pick');b.onclick=()=>show(p,1);tabs.appendChild(b);});
+b.dataset.p=p;if(p===TODAY)b.classList.add('pick');b.onclick=()=>show(p,p===TODAY?1:nearN(p));tabs.appendChild(b);});
 let saved=null;try{saved=JSON.parse(localStorage.getItem('paper-pos-'+D.date))}catch(e){}
 if(saved&&(places.includes(saved[0])||saved[0]===TODAY))show(saved[0],saved[1]);else show(places[0],1);
 evAll();refresh();setInterval(refresh,60000);
