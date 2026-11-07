@@ -13559,8 +13559,10 @@ box.innerHTML='<p class="muted">'+D.label+'。能力と市場を合わせた簡�
 '<div class="scroll"><table><thead><tr><th>馬</th><th class="num">単 / 複</th><th class="num">勝率 / 3着内</th><th class="num">単EV</th><th class="num">複EV</th></tr></thead><tbody>'+
 rows.slice(0,6).map(r=>'<tr><td>'+uu(r.u,1)+'</td><td class="num">'+r.o+' / '+(r.pl||'—')+'</td><td class="num">'+(r.p*100).toFixed(0)+'% / '+(r.p3*100).toFixed(0)+'%</td><td class="num">'+f(r.ew)+'</td><td class="num">'+f(r.ep)+'</td></tr>').join('')+
 '</tbody></table></div>';}
-const fuku=x=>({bet:'複勝 '+uu(x.u),sub:x.odds+'倍〜・3着内 '+Math.round(x.p3*100)+'%',ev:x.ev});
-const tan=x=>({bet:'単勝 '+uu(x.u)+(x.star?'<span class="chipt star">★ AIと市場の差 大</span>':''),sub:x.rank+'番人気 '+x.odds+'倍'+
+// 買いの目安のオッズ: 的中 = 期待値1.0（複勝の下限 × 3着内）、穴 = 期待値1.2。オッズが動くと AI の確率も少し動くので目安
+const line=(t,p)=>Math.ceil(t/p*10)/10;
+const fuku=x=>({bet:'複勝 '+uu(x.u),sub:x.odds+'倍〜・3着内 '+Math.round(x.p3*100)+'%・<b>複勝の下限 '+line(1.0,x.p3)+'倍以上なら買い</b>',ev:x.ev});
+const tan=x=>({bet:'単勝 '+uu(x.u)+(x.star?'<span class="chipt star">★ AIと市場の差 大</span>':''),sub:x.rank+'番人気 '+x.odds+'倍・<b>単勝 '+line(1.2,x.p)+'倍以上なら買い</b>'+
 (x.top&&x.top!==x.u?'・当てたいなら ワイド '+x.u+'-'+x.top+' も（118%・的中率 13%）':'')+
 (x.tri?'<br><b class="tri">一撃狙い 3連単 '+x.u+' → '+x.tri.second.join('・')+' → '+x.tri.third.join('・')+'（12点）</b>'+
 '<span class="muted">（大当たり頼みの一撃型・的中率3%）</span>':''),ev:x.ev});
