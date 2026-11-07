@@ -13533,14 +13533,19 @@ function aims(rid){const P=picks(rid),m={};P.ana.forEach(x=>m[x.u]='ana');P.hit.
 function evRace(rid){const hs=D.races[rid].filter(h=>h[3]>0);const box=document.querySelector('.ev[data-r="'+rid+'"]');
 const tag=document.querySelector('.myomi[data-r="'+rid+'"]');if(!box)return;
 const rank={};[...hs].sort((a,b)=>a[3]-b[3]).forEach((h,i)=>rank[h[0]]=i+1);const M=(D.main||{})[rid]||{};
+// 能力1位（オッズなし）なのに4番人気以下: 過去は市場の見立てどおりに走った（gap_lab.py: 勝率 能力21% → 実際11%・市場11%）
+const top=Math.max(...D.races[rid].map(h=>h[1])),gap=h=>h[1]===top&&rank[h[0]]>=4;
 D.races[rid].forEach(h=>{const el=document.querySelector('.evh[data-r="'+rid+'"][data-u="'+h[0]+'"]');if(!el)return;
 if(!(h[3]>0)){el.innerHTML='';return;}const m=M[h[0]];let s='<span class="o">'+h[3]+'</span>倍 '+rank[h[0]]+'番人気';
 if(m){const r=m[0]/m[2];s+='・AI '+(m[0]*100).toFixed(m[0]<0.1?1:0)+'%<span class="muted">（市場 '+(m[2]*100).toFixed(m[2]<0.1?1:0)+'%）</span>'+
-(r>=1.15?'<span class="up"> ↑</span>':r<=0.87?'<span class="down"> ↓</span>':'');}el.innerHTML=s;
+(r>=1.15?'<span class="up"> ↑</span>':r<=0.87?'<span class="down"> ↓</span>':'');}
+if(gap(h))s+='<br><span class="warn">能力1位でも人気薄。市場だけが知る事情（故障明け・調子など）の可能性</span>';el.innerHTML=s;
 const rv=document.querySelector('.rv-aim[data-r="'+rid+'"][data-u="'+h[0]+'"]');if(rv&&m){const A=aims(rid),q=m[0]/m[2];
 rv.innerHTML='<b>オッズから見ると</b>: '+h[3]+'倍（'+rank[h[0]]+'番人気）。AI '+(m[0]*100).toFixed(1)+'% / 市場 '+(m[2]*100).toFixed(1)+'% → '+
 (A[h[0]]?'<b>'+NAME[A[h[0]]]+'の狙い</b>に入っています':q>=1.15?'オッズより強いと見ているが、狙いの条件には届かない':
-q<=0.87?'オッズほどの強さは無いと見ている（買われ過ぎ）':'オッズ相応');}});
+q<=0.87?'オッズほどの強さは無いと見ている（買われ過ぎ）':'オッズ相応')+
+(gap(h)?'<br><b>能力1位なのに'+rank[h[0]]+'番人気</b>: 過去にこうなった馬は、能力の見込み（勝率 約21%）ではなく市場の見立てどおり'+
+'（実際 約11%）に走った。市場だけが知る事情がある可能性が高いので、能力の印より AI（オッズあり）の % を信じる':'');}});
 if(hs.length<3){box.innerHTML='<p class="muted">オッズ未取得（取れ次第、市場とAIを合わせた期待値を出します）</p>';tag.textContent='—';return;}
 const inv=hs.map(h=>1/h[3]),s=inv.reduce((a,b)=>a+b,0),pm=inv.map(x=>x/s);
 const z=hs.map((h,i)=>D.ab[0]*Math.log(pm[i])+D.ab[1]*Math.log(h[1])),zm=Math.max(...z);
